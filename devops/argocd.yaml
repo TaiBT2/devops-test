@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devops-test
+  namespace: devops
+spec:
+  project: devops-test
+  source:
+    repoURL: https://github.com/TaiBT2/devops-test.git
+    targetRevision: HEAD
+    path: devops/app-helm
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: devops-test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true    
