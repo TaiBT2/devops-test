@@ -62,7 +62,12 @@ tolerations: {}
 
 affinity: true
 
-command: []
+command:
+  - bash
+  - -c
+  - |
+    ls -al
+    /bin/bash run.sh
 
 service:
   type: ClusterIP
